@@ -58,6 +58,7 @@
                           <th>Name</th>
                           <th>Level</th>
                           <th>Teacher</th>
+                          <th>Number of students</th>
                           <th>Start date</th>
                           <th>End date</th>
                           <th>Start time</th>
@@ -78,6 +79,7 @@
                               {{ course.teacher.firstName }}
                               {{ course.teacher.lastName }}
                             </td>
+                            <td>{{ course.countOfStudents }}</td>
                             <td>{{ course.startDate }}</td>
                             <td>{{ course.endDate }}</td>
                             <td>{{ course.startTime }}</td>

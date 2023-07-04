@@ -107,10 +107,7 @@ export class ListCoursesComponent implements OnInit {
     this.dialogConfig.data = {
       courseId: id,
     };
-     this.dialog.open(
-      EditCourseModalComponent,
-      this.dialogConfig
-    );
+    this.dialog.open(EditCourseModalComponent, this.dialogConfig);
   }
 
   delCourse(id: any) {
@@ -154,4 +151,5 @@ export interface courseElement {
     firstName: string;
     lastName: string;
   };
+  countOfStudents: number;
 }
