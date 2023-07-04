@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
 import { ToastrService } from "ngx-toastr";
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-recorded-courses',
@@ -17,9 +19,12 @@ export class RecordedCoursesComponent {
   hasNextPage: boolean = false;
   hasPrevPage: boolean = false;
   isLoading: boolean = true;
-  constructor(private _RecordedCoursesService: RecordedCoursesService, private toastr: ToastrService) { }
+  role: string = '';
+  constructor(private _RecordedCoursesService: RecordedCoursesService, private toastr: ToastrService, private router: Router,
+    private _auth: AuthService) { }
 
   ngOnInit() {
+    this.role = this._auth.getDecodedToken()?.role;
     this.getRecordedCourses();
     this._RecordedCoursesService.getAllRecordedCourseCategory().subscribe({
       next: (res: any) => {
@@ -78,16 +83,20 @@ export class RecordedCoursesComponent {
 
   enrollCourse(event: Event, id: string) {
     event.stopPropagation();
-    this._RecordedCoursesService.enrollCourse(id, 'true').subscribe({
-      next: (res: any) => {
-        if (res.status === 200) {
-          window.location.href = res.body;
-
+    if (this.role != 'student') {
+      this.router.navigate(['/login/user']);
+    
+    } else {
+      this._RecordedCoursesService.enrollCourse(id, 'true').subscribe({
+        next: (res: any) => {
+          if (res.status === 200) {
+            window.location.href = res.body;
+          }
+        },
+        error: (err) => {
+          this.toastr.error(`${err.error.error}`);
         }
-      },
-      error: (err) => {
-        this.toastr.error(`${err.error.error}`);
-      }
-    });
+      });
+    }
   }
 }
