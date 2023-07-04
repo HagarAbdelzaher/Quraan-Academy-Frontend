@@ -19,6 +19,11 @@
   .attributes dd {
     grid-column-start: span 2;
   }
+  .scroll{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
   
   /* Commented explanation below, uncomment to read more easily: */
   /*
