@@ -38,9 +38,13 @@ export class QuestionsComponent implements OnInit {
       next: (res: any) => {
         this.categories = res;
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+      },
     })
   }
 
@@ -52,9 +56,13 @@ export class QuestionsComponent implements OnInit {
           this.pageInfo = res.data;
         }
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+      },
     });
   }
   changeCategory() {

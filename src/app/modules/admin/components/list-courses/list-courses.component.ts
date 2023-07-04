@@ -94,7 +94,6 @@ export class ListCoursesComponent implements OnInit {
           error: { message },
         } = error;
         if (!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`, 'Error');
       },
     });
@@ -108,13 +107,10 @@ export class ListCoursesComponent implements OnInit {
     this.dialogConfig.data = {
       courseId: id,
     };
-    const dialogRef = this.dialog.open(
+     this.dialog.open(
       EditCourseModalComponent,
       this.dialogConfig
     );
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   delCourse(id: any) {
@@ -130,7 +126,6 @@ export class ListCoursesComponent implements OnInit {
               error: { message },
             } = error;
             if (!message) message = error.error.error;
-            console.log(message);
             this.toastr.error(`${message}`, 'Error');
           },
         });

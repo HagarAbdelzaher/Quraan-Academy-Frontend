@@ -72,7 +72,6 @@ export class EditChapterMOdalComponent implements OnInit {
                         error: { message },
                     } = error;
                     if (!message) message = error.error.error;
-                    console.log(message);
                     this.toastr.error(`${message}`, "Error");
                 },
             });
@@ -93,7 +92,6 @@ export class EditChapterMOdalComponent implements OnInit {
                     error: { message },
                 } = error;
                 if (!message) message = error.error.error;
-                console.log(message);
                 this.toastr.error(`${message}`, "Error");
             },
         });

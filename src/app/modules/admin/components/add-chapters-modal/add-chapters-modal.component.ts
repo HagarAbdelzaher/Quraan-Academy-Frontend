@@ -51,11 +51,9 @@ export class AddChaptersModalComponent implements OnInit {
       error: (error : any) => {
         let {error : {message}}  = error;
         if(!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`,'Error');
       }
     })
-    console.log(this.chaptersForm.value.chapters, this.recordedCourseId);
   }
 
   setNumberOfChapters(num: number) {

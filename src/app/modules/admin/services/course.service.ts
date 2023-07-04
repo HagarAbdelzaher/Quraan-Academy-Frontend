@@ -42,7 +42,6 @@ export class CourseService {
       daysOfWeek: formValue['daysOfWeek'],
     };
 
-    console.log("from service", formData);
     return this.http
       .post(`${this.domain}/course/`, formData)
       .pipe(catchError(this.handleError));

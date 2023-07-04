@@ -26,7 +26,6 @@ export class EditAnswerModalComponent {
   editAnswer() {
     this._QAService.editAnswer(this.data.questionID, this.answerForm.value).subscribe({
       next: (data) => {
-        console.log(data);
         this._QAService.buttonClicked.emit();
         this.dialogRef.close()
       },

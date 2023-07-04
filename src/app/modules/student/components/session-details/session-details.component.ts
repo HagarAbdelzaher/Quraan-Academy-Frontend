@@ -18,7 +18,7 @@ export class SessionDetailsComponent {
     private _studentService: StudentService,
     private toastr: ToastrService,
     private _Router: Router) {
-    this.id = this._activatedRoute.snapshot.params['id'];      
+    this.id = this._activatedRoute.snapshot.params['id'];
     this.getSessionDetails();
   }
 
@@ -32,8 +32,6 @@ export class SessionDetailsComponent {
   getSessionDetails() {
     this._studentService.getSessionDetails(this.id).subscribe({
       next: (data) => {
-        console.log(data);
-        
         this.session = data;
         this.isLoading = false;
       },
@@ -51,10 +49,9 @@ export class SessionDetailsComponent {
   }
 
   formatDate(dateStr:string){
-    const date = new Date(dateStr);    
-    // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
+    const date = new Date(dateStr);
     const formattedDate = new Intl.DateTimeFormat("en-GB").format(date);
     return formattedDate;
-    
+
   }
 }

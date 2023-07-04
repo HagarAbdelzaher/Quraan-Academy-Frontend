@@ -57,8 +57,6 @@ export class EditTeacherModalComponent {
     this.teacherId = this.data.teacherId;
     this.teacher.getTeacher(this.teacherId).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.teacherForm.patchValue({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -68,12 +66,12 @@ export class EditTeacherModalComponent {
           email: data.email,
         });
       },
-      error: (error) => {
+      error: (error: any) => {
         let {
           error: { message },
         } = error;
-        if (!message) message = error.message;
-        console.log(`MESSAGE : ${error.message}`, 'Could not get teacher data');
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
       },
     });
   }
@@ -95,9 +93,9 @@ export class EditTeacherModalComponent {
           if (error.status === 400) {
             this.toastr.error('Can not update teacher', 'Error');
           } else {
-            console.log(
-              `MESSAGE : ${message}`,
-              'Could not update teacher data'
+            this.toastr.error(
+              'Can not update teacher now',
+              'Error'
             );
           }
         },

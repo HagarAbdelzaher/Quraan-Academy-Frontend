@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit {
 
     this._authService.login(login.value, this.role).subscribe({
       next: (res: any) => {
-        console.log(res);
         if (res.token) {
           localStorage.setItem('token', res.token);
           this._authService.currentUser.next(
@@ -75,7 +74,6 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err);
         this.error = err.error.error;
         this.isLoading = false;
       },

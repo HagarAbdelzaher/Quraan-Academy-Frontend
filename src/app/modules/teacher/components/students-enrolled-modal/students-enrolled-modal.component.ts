@@ -23,12 +23,11 @@ export class StudentsEnrolledModalComponent implements OnInit {
     this.getEnrolledStudents()
     })
   }
-  
+
   getEnrolledStudents(){
     this.isLoading=true
     this._teacherService.getEnrolledStudents(this.data.courseID).subscribe({
       next: (res)=>{
-        console.log(res);
         this.students = res;
         this.isLoading = false;
       },

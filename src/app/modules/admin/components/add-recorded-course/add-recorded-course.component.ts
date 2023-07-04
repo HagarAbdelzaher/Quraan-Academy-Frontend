@@ -42,16 +42,14 @@ export class AddRecordedCourseComponent implements OnInit{
     let params = {
       type: 'recordedCourse'
     }
-    console.log(params);
     this.category.getRecordedCourseCategoriesNotPaginated(params).subscribe({
-      
+
       next: (data) => {
         this.categories = data;
       },
       error : (error : any) => {
         let {error : {message}}  = error;
         if(!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`,'Error');
       }
     })

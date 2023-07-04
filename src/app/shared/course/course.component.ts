@@ -35,7 +35,6 @@ export class CourseComponent implements OnInit {
       this.getCourses();
     });
     this.role = auth.getRole();
-    console.log(this.role);
   }
 
   ngOnInit(): void {
@@ -110,7 +109,6 @@ export class CourseComponent implements OnInit {
       this._RecordedCoursesService.enrollCourse(id).subscribe({
         next: (res: any) => {
           if (res.status === 200) {
-            console.log(res);
             window.location.href = res.body;
           }
         },

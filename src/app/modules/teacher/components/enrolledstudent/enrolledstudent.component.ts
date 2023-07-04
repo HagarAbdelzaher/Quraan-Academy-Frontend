@@ -28,6 +28,5 @@ export class EnrolledstudentComponent {
       }
     })
     const commentValue = this.commentForm.get('comment')?.value;
-    console.log('Submitted Comment:', commentValue);
   }
 }

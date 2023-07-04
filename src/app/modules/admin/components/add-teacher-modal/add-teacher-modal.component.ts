@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TeacherService } from '../../services/teacher.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-teacher-modal',
   templateUrl: './add-teacher-modal.component.html',
@@ -13,7 +14,8 @@ export class AddTeacherModalComponent {
   constructor(
     private fb: FormBuilder,
     private teacher: TeacherService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService
   ) {
     this.teacherForm = this.fb.group({
       firstName: ['', [Validators.required, this.trimValidator]],
@@ -56,8 +58,12 @@ export class AddTeacherModalComponent {
         this.teacher.buttonClicked.emit();
         this.dialog.closeAll();
       },
-      error: (err) => {
-        console.log(err);
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
       },
     });
   }

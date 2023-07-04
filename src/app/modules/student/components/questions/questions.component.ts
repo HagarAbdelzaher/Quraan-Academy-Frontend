@@ -46,7 +46,6 @@ export class QuestionsComponent implements OnInit {
           error: { message },
         } = error;
         if (!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`, "Error");
       },
     });
@@ -62,10 +61,14 @@ export class QuestionsComponent implements OnInit {
         }
         this.isLoading = false;
       },
-      error: (err) => {
-        console.log(err);
-        this.isLoading = false
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+        this.isLoading = false;
+      },
     });
   }
 
@@ -99,7 +102,6 @@ export class QuestionsComponent implements OnInit {
             this.getQuestions()
           },
           error: (error: any) => {
-
             this.toastr.error("Error deleting question");
           },
         });

@@ -37,7 +37,6 @@ export class CourseDetailsComponent implements OnInit {
       next: (data) => {
         this.course = data;
         this.isLoading = false;
-        console.log(data);
       },
       error: (error: any) => {
         if (error.status === 404) {
@@ -92,7 +91,7 @@ export class CourseDetailsComponent implements OnInit {
     this.dialog.open(SessionCommentModalComponent, this.dialogConfig);
   }
 
-  CommentDisplay(session:any) {    
+  CommentDisplay(session:any) {
     session.viewComment = true;
   }
   CommentHide(session:any) {
@@ -107,4 +106,3 @@ export class CourseDetailsComponent implements OnInit {
   }
 
 }
-

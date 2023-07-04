@@ -41,12 +41,16 @@ export class RecordedDeatailsComponent {
     this._recordedDetalis.getChaptersOfRecordedCourse(this.courseId).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          this.chapters = res.body;          
+          this.chapters = res.body;
         }
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+      },
     });
   }
 
@@ -54,12 +58,16 @@ export class RecordedDeatailsComponent {
     this._recordedDetalis.getCourseById(this.courseId).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          this.course = res.body;          
+          this.course = res.body;
         }
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+      },
     });
   }
     enrollCourse(id:string) {
@@ -75,4 +83,3 @@ export class RecordedDeatailsComponent {
       });
     }
   }
-

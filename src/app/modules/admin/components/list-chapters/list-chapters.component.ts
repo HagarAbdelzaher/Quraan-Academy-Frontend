@@ -42,7 +42,6 @@ export class ListChaptersComponent implements OnInit {
                     error: { message },
                 } = error;
                 if (!message) message = error.error.error;
-                console.log(message);
                 this.toastr.error(`${message}`, "Error");
             },
         });
@@ -80,7 +79,6 @@ export class ListChaptersComponent implements OnInit {
                         error: { message },
                     } = error;
                     if (!message) message = error.error.error;
-                    console.log(message);
                     this.toastr.error(`${message}`, "Error");
                 },
             });

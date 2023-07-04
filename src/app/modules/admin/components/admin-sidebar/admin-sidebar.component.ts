@@ -13,12 +13,11 @@ export class AdminSidebarComponent {
   constructor(private _authService: AuthService, private toastr: ToastrService) {
     this._authService.currentUser$.subscribe({
       next: (data: any) => {
-        this.email = data.email;
+        this.email = data?.email;
       },
       error: (error : any) => {
         let {error : {message}}  = error;
         if(!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`,'Error');
       }
     })

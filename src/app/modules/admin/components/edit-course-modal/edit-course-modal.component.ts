@@ -67,7 +67,6 @@ export class EditCourseModalComponent implements OnInit {
           error: { message },
         } = error;
         if (!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`, 'Error');
       },
     });
@@ -102,7 +101,7 @@ export class EditCourseModalComponent implements OnInit {
     return null;
   }
 
-  greaterThanZeroValidator(control: any) {}
+  greaterThanZeroValidator(control: any) { }
 
   calculateNumberOfSessions(
     startDate: Date | null | undefined,
@@ -155,8 +154,6 @@ export class EditCourseModalComponent implements OnInit {
     this.courseId = this.data.courseId;
     this.course.getCourse(this.courseId).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.courseForm.patchValue({
           name: data.name,
           description: data.description,
@@ -171,12 +168,12 @@ export class EditCourseModalComponent implements OnInit {
           numberOfSessions: data.numberOfSessions ?? null,
         });
       },
-      error: (error) => {
+      error: (error: any) => {
         let {
           error: { message },
         } = error;
-        if (!message) message = error.message;
-        console.log(`MESSAGE : ${error.message}`, 'Could not get course data');
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
       },
     });
   }
@@ -207,7 +204,10 @@ export class EditCourseModalComponent implements OnInit {
             'Error'
           );
         } else {
-          console.log(`MESSAGE : ${message}`, 'Could not update course data');
+          this.toastr.error(
+            'Can not update course now',
+            'Error'
+          );
         }
       },
     });

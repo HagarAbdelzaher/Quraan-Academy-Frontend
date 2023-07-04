@@ -26,7 +26,7 @@ export class EditRecordedCourseModalComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: { recordedCourseId: string }
     ) {
         this.recordedCourseId = this.data.recordedCourseId;
-       
+
         this.editForm = this.fb.group({
             name: ["", [Validators.required, this.trimValidator]],
             price: [
@@ -61,7 +61,6 @@ export class EditRecordedCourseModalComponent implements OnInit {
                     error: { message },
                 } = error;
                 if (!message) message = error.error.error;
-                console.log(message);
                 this.toastr.error(`${message}`, "Error");
             },
         });
@@ -84,7 +83,6 @@ export class EditRecordedCourseModalComponent implements OnInit {
                         error: { message },
                     } = error;
                     if (!message) message = error.error.error;
-                    console.log(message);
                     this.toastr.error(`${message}`, "Error");
                 },
             });
@@ -107,7 +105,6 @@ export class EditRecordedCourseModalComponent implements OnInit {
                         error: { message },
                     } = error;
                     if (!message) message = error.error.error;
-                    console.log(message);
                     this.toastr.error(`${message}`, "Error");
                 },
             });

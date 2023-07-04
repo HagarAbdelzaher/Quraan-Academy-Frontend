@@ -60,7 +60,6 @@ export class SessionDetailsComponent {
             this.toastr.success('meeting link generated', "Success");
           },
           error: (error: any) => {
-            console.log(error);
             this.toastr.error('Cannot generate meeting link', "Error");
           },
         }
@@ -69,7 +68,6 @@ export class SessionDetailsComponent {
   }
   formatDate(dateStr: string) {
     const date = new Date(dateStr);
-    // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
     const formattedDate = new Intl.DateTimeFormat("en-GB").format(date);
     return formattedDate;
 

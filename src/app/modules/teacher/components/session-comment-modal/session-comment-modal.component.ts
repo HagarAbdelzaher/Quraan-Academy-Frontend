@@ -20,7 +20,6 @@ export class SessionCommentModalComponent {
     comment: new FormControl(this.data.progressComment, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
   })
   setSessionComment(sessionID: string) {
-    console.log(this.commentForm.value.comment);
 
     this._teacherService.addProgressComment(sessionID, this.commentForm.value.comment).subscribe({
       next: (data) => {

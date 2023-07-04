@@ -19,7 +19,6 @@ export class CourseDetailsComponent implements OnInit {
     private _Router: Router) {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.getCourseDetails();
-    // console.log(this.course);
   }
 
   ngOnInit(): void {
@@ -81,6 +80,5 @@ export class CourseDetailsComponent implements OnInit {
   CommentHide(session:any) {
     session.viewComment = false;
   }
-  
-}
 
+}

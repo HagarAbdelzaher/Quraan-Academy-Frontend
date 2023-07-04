@@ -62,13 +62,10 @@ export class ListTeachersComponent implements OnInit {
             teacherId: id,
         };
         this.dialogConfig.width = "800px";
-        const dialogRef = this.dialog.open(
+        this.dialog.open(
             EditTeacherModalComponent,
             this.dialogConfig
         );
-        dialogRef.afterClosed().subscribe((result) => {
-            console.log(`Dialog result: ${result}`);
-        });
     }
     delTeacher(id: any) {
         swal.fire(swalOptions.deleteTeacherOptions).then((result) => {
@@ -86,7 +83,6 @@ export class ListTeachersComponent implements OnInit {
                             error: { message },
                         } = error;
                         if (!message) message = error.error.error;
-                        console.log(message);
                         this.toastr.error(`${message}`, "Error");
                     },
                 });

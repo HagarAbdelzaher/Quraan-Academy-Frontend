@@ -28,7 +28,6 @@ export class AskQuestionModalComponent {
   askQuestion() {
     this._QAService.askQuestion(this.questionForm.value).subscribe({
       next: (data) => {
-        console.log(data);
         this._QAService.buttonClicked.emit();
         this.dialogRef.close()
       },

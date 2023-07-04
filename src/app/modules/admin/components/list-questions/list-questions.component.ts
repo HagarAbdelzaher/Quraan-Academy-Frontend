@@ -37,9 +37,13 @@ export class ListQuestionsComponent implements OnInit {
           ])
         }
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+      },
     });
   }
 
@@ -56,7 +60,6 @@ export class ListQuestionsComponent implements OnInit {
           error: { message },
         } = error;
         if (!message) message = error.error.error;
-        console.log(message);
         this.toastr.error(`${message}`, "Error");
       },
     });
@@ -92,13 +95,10 @@ export class ListQuestionsComponent implements OnInit {
             );
           },
           error: (error: any) => {
-            console.log(error);
-
             let {
               error: { message },
             } = error;
             if (!message) message = error.error.error;
-            console.log(message);
             this.toastr.error(`${message}`, "Error");
           },
         });
@@ -117,13 +117,10 @@ export class ListQuestionsComponent implements OnInit {
             );
           },
           error: (error: any) => {
-            console.log(error);
-
             let {
               error: { message },
             } = error;
             if (!message) message = error.error.error;
-            console.log(message);
             this.toastr.error(`${message}`, "Error");
           },
         });
