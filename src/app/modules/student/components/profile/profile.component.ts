@@ -29,14 +29,19 @@ export class ProfileComponent implements OnInit{
   }
 
   updateStudent() {
-    this.studentService.updateStudentProfile(this.studentData).subscribe(
-      data => {
-        this.studentData = data;
-        this.toastr.success(`Data updated successfully`, 'Success');
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    if(this.studentData.firstName.trim().length === 0 || this.studentData.lastName.trim().length === 0){
+      this.toastr.error('firstName and last Name are not allowed to be empty','Error');
+    }
+    else{
+      this.studentService.updateStudentProfile(this.studentData).subscribe(
+        data => {
+          this.studentData = data;
+          this.toastr.success(`Data updated successfully`, 'Success');
+        },
+        error => {
+          this.toastr.error(error.error.error);
+        }
+      );
+    }
   }
 }
