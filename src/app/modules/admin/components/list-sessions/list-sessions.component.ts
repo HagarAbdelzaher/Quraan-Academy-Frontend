@@ -9,7 +9,7 @@ import { SessionService } from '../../services/session.service';
 export class ListSessionsComponent {
   months: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
   sessions: sessionElement[] = [];
-  selectedMonth: number = new Date().getMonth()+1;
+  selectedMonth: number = new Date().getMonth() + 1;
   selectedYear: number = new Date().getFullYear();
   date: string = `${this.selectedYear}-${this.selectedMonth}-01`;
   firstDay: number = new Date(this.date).getDay();
@@ -46,9 +46,13 @@ export class ListSessionsComponent {
           ...session,
           id: index + 1,
           date: new Date(session.date.split('T')[0]),
+          showBubble: false,
         }));
       },
     });
+  }
+  showBubble(session: sessionElement) {
+    session.showBubble = !session.showBubble;
   }
   getMonthName(monthNumber: number): string {
     const date = new Date(2000, monthNumber, 1);
@@ -71,4 +75,5 @@ export interface sessionElement {
   startTime: string;
   endTime: string;
   progressComment: string;
+  showBubble: boolean;
 }

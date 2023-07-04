@@ -54,13 +54,14 @@
                           <th>Day Of week</th>
                           <th>Date</th>
                           <th>Sessions</th>
+                          <th>Session progress</th>
                         </tr>
                       </thead>
                       <tbody>
                         <ng-container *ngFor="let day of days">
                           <tr class="tr h-3">
                             <td>{{ daysOfWeek[(firstDay + day - 1) % 7] }}</td>
-                            <!-- <td>{{ firstDay }}</td> -->
+
                             <td>{{ day }}</td>
                             <td>
                               <ng-container *ngFor="let session of sessions">
@@ -73,8 +74,34 @@
 
                                     {{ session.startTime }}
                                     {{ session.endTime }}
+                                  </ng-container>
+                                </div>
+                              </ng-container>
+                            </td>
+                            <td class="position-relative">
+                              <ng-container *ngFor="let session of sessions">
+                                <div class="sessionDiv">
+                                  <ng-container
+                                    *ngIf="session.date.getDate() === day"
+                                    class="sessionDiv"
+                                  >
+                                    <p class="course-description">
+                                      <a
+                                        class="read-more"
+                                        (click)="showBubble(session)"
+                                        *ngIf="session.progressComment"
+                                        >View progress</a
+                                      >
+                                    </p>
 
-                                    {{ session.progressComment }}
+                                    <div
+                                      class="bubble"
+                                      *ngIf="session.showBubble"
+                                    >
+                                      <p class="description-full">
+                                        {{ session.progressComment }}
+                                      </p>
+                                    </div>
                                   </ng-container>
                                 </div>
                               </ng-container>

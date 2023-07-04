@@ -1,116 +1,139 @@
 .page {
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
 }
 .table-area {
-    width: 90%;
-    margin: 1vw;
+  width: 90%;
+  margin: 1vw;
 }
 
 .table-wrapper {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .addCourse {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #c3a668;
-    color: #fff;
-    font-size: 12px;
-    padding: 0.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transform: scale(1);
-    transition: 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c3a668;
+  color: #fff;
+  font-size: 12px;
+  padding: 0.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.25s;
 }
 
 .addCourse i {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 tr {
-    height: auto;
+  height: auto;
 }
 .sessionDiv {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .action {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .table tbody td {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .card-content {
-    background-color: #f9f6ef;
+  background-color: #f9f6ef;
 }
 
 .table-striped > tbody > tr:nth-child(2n + 1) > td,
 .table-striped > tbody > tr:nth-child(2n + 1) > th {
-    background-color: #f3ede0;
+  background-color: #f3ede0;
 }
 
 .card-header {
-    background-color: #d5c095;
-    color: #fff;
+  background-color: #d5c095;
+  color: #fff;
 }
 
 @media (max-width: 992px) {
-    .page {
-        flex-direction: column !important;
-        transition: 0.25s;
-    }
-    .table-area {
-        width: 100%;
-    }
-    .filter-add {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .addCourse {
-        width: 30vh;
-        margin: 3vw;
-    }
+  .page {
+    flex-direction: column !important;
+    transition: 0.25s;
+  }
+  .table-area {
+    width: 100%;
+  }
+  .filter-add {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .addCourse {
+    width: 30vh;
+    margin: 3vw;
+  }
 }
 
 @media (max-width: 575.98px) {
-    .table-responsive-md {
-        overflow-x: scroll;
-    }
+  .table-responsive-md {
+    overflow-x: scroll;
+  }
 }
 
 @media (min-width: 576px) {
-    .table-responsive-md {
-        overflow-x: auto;
-    }
+  .table-responsive-md {
+    overflow-x: auto;
+  }
 }
 
 @media (min-width: 1200px) {
-    .table-responsive-md {
-        overflow-x: auto;
-    }
+  .table-responsive-md {
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 767px) {
-    .table-responsive-md .table tr td,
-    .table-responsive-md .table tr th {
-        font-size: 12px;
-    }
+  .table-responsive-md .table tr td,
+  .table-responsive-md .table tr th {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) {
-    .table-responsive-md .table td,
-    .table-responsive-md .table th {
-        font-size: 14px;
-    }
+  .table-responsive-md .table td,
+  .table-responsive-md .table th {
+    font-size: 14px;
+  }
+}
+
+.course-description {
+  margin-top: 5px;
+}
+
+.description-full {
+  margin: 0;
+}
+.read-more {
+  cursor: pointer;
+}
+.bubble {
+  position: absolute;
+  top: 3rem;
+  left: 10%;
+  border-radius: 10px;
+  width: 250px;
+  padding: 20px;
+  background-color: #f4ede4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 11;
 }
