@@ -151,11 +151,6 @@
             <mat-error *ngIf="courseForm.get('endDate')?.hasError('required')">
               End date is required.
             </mat-error>
-            <mat-error
-              *ngIf="courseForm.get('endDate')?.hasError('invalidEndDate')"
-            >
-              End date can't be before start date
-            </mat-error>
           </mat-form-field>
         </div>
 
