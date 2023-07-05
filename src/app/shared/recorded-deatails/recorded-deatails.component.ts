@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
 
 @Component({
@@ -29,7 +29,7 @@ export class RecordedDeatailsComponent {
     numberOfChapters: 0,
     price: 0
   };
-    constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute,private toastr: ToastrService){}
+    constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute,private toastr: ToastrService, private router:Router){}
 
   ngOnInit(){
     this.courseId =  this.route.snapshot.paramMap.get('id') ?? '';
@@ -73,9 +73,15 @@ export class RecordedDeatailsComponent {
     enrollCourse(id:string) {
       this._recordedDetalis.enrollCourse(id,'true').subscribe({
         next: (res: any) => {
-          if (res.status === 200) {
-            window.location.href = res.body;
-          }
+          if (res.body === 'free') {
+            this.toastr.success('Enrolled Successfully','Success');
+              this.router.navigate(['/student/recordedCourses'])
+              return
+            }
+            if (res.status === 200) {
+              window.location.href = res.body;
+              return
+            }
         },
         error: (err) => {
           this.toastr.error(`${err.error.error}`);

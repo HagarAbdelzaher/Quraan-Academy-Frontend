@@ -6,12 +6,7 @@
     <div class="d-flex flex-wrap">
       <div class="form-group mr-2">
         <label for="teacher-dropdown">Teacher</label>
-        <select
-          class="form-control"
-          id="teacher-dropdown"
-          [(ngModel)]="selectedTeacher"
-          (change)="getCourses()"
-        >
+        <select class="form-control" id="teacher-dropdown" [(ngModel)]="selectedTeacher" (change)="getCourses()">
           <option>All</option>
           <option *ngFor="let teacher of teachers" [value]="teacher._id">
             {{ teacher.firstName + " " + teacher.lastName }}
@@ -21,12 +16,7 @@
       <div class="form-group mx-2">
         <label for="level-dropdown">Level</label>
 
-        <select
-          class="form-control"
-          id="level-dropdown"
-          [(ngModel)]="selectedLevel"
-          (change)="getCourses()"
-        >
+        <select class="form-control" id="level-dropdown" [(ngModel)]="selectedLevel" (change)="getCourses()">
           <option>All</option>
           <option value="kids">Kids</option>
           <option value="beginner">beginner</option>
@@ -46,15 +36,13 @@
               <mat-card-header class="card-header">
                 <mat-card-title class="course-name">{{
                   course.name
-                }}</mat-card-title>
+                  }}</mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-content">
                 <p class="course-description">
                   {{
-                    course.description.split(" ").slice(0, 4).join(" ") + "..."
-                  }}<a class="read-more" (click)="showBubble(course)"
-                    >See more</a
-                  >
+                  course.description.split(" ").slice(0, 4).join(" ") + "..."
+                  }}<a class="read-more" (click)="showBubble(course)">See more</a>
                 </p>
 
                 <div class="bubble" *ngIf="course.showBubble">
@@ -83,12 +71,9 @@
 
                 <hr />
                 <mat-card-actions class="card-actions">
-                  <p class="price">{{ course.price + " " + "LE" }}</p>
-                  <button
-                    *ngIf="role != 'teacher'"
-                    class="enrollBtn btn"
-                    (click)="enrollCourse(course._id, role)"
-                  >
+                  <p class="price" *ngIf="course.price ===0">FREE</p>
+                  <p class="price" *ngIf="course.price !==0">{{ course.price + " " + "LE" }}</p> <button
+                    *ngIf="role != 'teacher'" class="enrollBtn btn" (click)="enrollCourse(course._id, role)">
                     Enroll Now
                   </button>
                 </mat-card-actions>
@@ -100,24 +85,14 @@
       <nav aria-label="Page navigation example" *ngIf="courses.length">
         <ul class="pagination justify-content-center mt-4">
           <li class="page-item">
-            <a
-              class="page-link"
-              (click)="prevPage()"
-              [ngClass]="{ disabled: !hasPrevPage }"
-            >
-              Previous</a
-            >
+            <a class="page-link" (click)="prevPage()" [ngClass]="{ disabled: !hasPrevPage }">
+              Previous</a>
           </li>
           <li class="page-item">
             <a class="page-link">{{ currentPage }}</a>
           </li>
           <li class="page-item">
-            <a
-              class="page-link"
-              (click)="nextPage()"
-              [ngClass]="{ disabled: !hasNextPage }"
-              >Next</a
-            >
+            <a class="page-link" (click)="nextPage()" [ngClass]="{ disabled: !hasNextPage }">Next</a>
           </li>
         </ul>
       </nav>

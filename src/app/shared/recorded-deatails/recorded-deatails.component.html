@@ -8,7 +8,8 @@
             <dt>Number Of Chapter</dt>
             <dd>{{ course.numberOfChapters }}</dd>
             <dt>price</dt>
-            <dd>{{ course.price }} LE</dd>
+            <dd class="price" *ngIf="course.price ===0">FREE</dd>
+            <dd class="price" *ngIf="course.price !==0">{{course.price}} LE</dd>
         </dl>
         <button class="custom-button" (click)="enrollCourse(course['_id'])">Enroll Now</button>
     </div>

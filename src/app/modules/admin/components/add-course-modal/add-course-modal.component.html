@@ -224,8 +224,8 @@
             <mat-error
               *ngIf="courseForm.get('price')?.hasError('notGreaterThanZero')"
             >
-              Price must be greater than zero.
-            </mat-error>
+            Price must be zero or greater than zero.
+          </mat-error>
             <mat-error
               *ngIf="
                 courseForm.controls['price'].touched &&

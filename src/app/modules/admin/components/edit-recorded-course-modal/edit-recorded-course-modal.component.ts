@@ -48,7 +48,7 @@ export class EditRecordedCourseModalComponent implements OnInit {
     }
 
     greaterThanZeroValidator(control: any) {
-        return control.value > 0 ? null : { notGreaterThanZero: true };
+        return control.value >= 0 ? null : { notGreaterThanZero: true };
     }
 
     getCategories(): void {

@@ -50,7 +50,8 @@
               </p>
               <hr />
               <mat-card-actions class="card-actions">
-                <p class="price">{{ course['price'] + " " + "LE" }}</p>
+                <p class="price" *ngIf="course['price'] ===0">FREE</p>
+                <p class="price" *ngIf="course['price'] !==0">{{ course['price'] + " " + "LE" }}</p>
                 <button (click)="enrollCourse($event,course['_id'])" class="enrollBtn btn">Enroll Now</button>
               </mat-card-actions>
             </mat-card-content>

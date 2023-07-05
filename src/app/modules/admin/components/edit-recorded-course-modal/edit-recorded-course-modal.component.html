@@ -40,7 +40,7 @@
               Price is required.
             </mat-error>
             <mat-error *ngIf="editForm.get('price')?.hasError('notGreaterThanZero')">
-              Price must be greater than zero.
+              Price must be zero or greater than zero.
             </mat-error>
             <mat-error *ngIf="
                 editForm.controls['price'].touched &&

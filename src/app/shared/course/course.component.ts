@@ -108,8 +108,14 @@ export class CourseComponent implements OnInit {
     } else {
       this._RecordedCoursesService.enrollCourse(id).subscribe({
         next: (res: any) => {
+          if (res.body === 'free') {
+          this.toastr.success('Enrolled Successfully','Success');
+            this.router.navigate(['/student/courses'])
+            return
+          }
           if (res.status === 200) {
             window.location.href = res.body;
+            return
           }
         },
         error: (err) => {

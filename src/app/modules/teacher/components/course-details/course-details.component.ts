@@ -34,7 +34,7 @@ export class CourseDetailsComponent implements OnInit {
 
   getCourseDetails() {
     this._teacherService.getCourseDetails(this.id).subscribe({
-      next: (data) => {
+      next: (data) => {        
         this.course = data;
         this.isLoading = false;
       },

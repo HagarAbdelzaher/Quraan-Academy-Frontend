@@ -89,8 +89,14 @@ export class RecordedCoursesComponent {
     } else {
       this._RecordedCoursesService.enrollCourse(id, 'true').subscribe({
         next: (res: any) => {
+         if (res.body === 'free') {
+          this.toastr.success('Enrolled Successfully','Success');
+            this.router.navigate(['/student/recordedCourses'])
+            return
+          }
           if (res.status === 200) {
             window.location.href = res.body;
+            return
           }
         },
         error: (err) => {

@@ -49,8 +49,22 @@ export class SessionDetailsComponent {
   }
 
   createMeeting() {
-    if (new Date(this.session.date.split('T')[0]) > new Date()) {
-      this.toastr.error('Session not available', "Error");
+    //now>start and now<end
+    const sessionDateStart = new Date(this.session.date.split('T')[0]);
+    const sessionDateEnd = new Date(this.session.date.split('T')[0]);
+    const sessionStart = this.session.startTime;
+    const sessionEnd = this.session.endTime;
+    sessionDateStart.setHours(Number(sessionStart.split(':')[0]));
+    sessionDateStart.setMinutes(Number(sessionStart.split(':')[1]));
+    sessionDateEnd.setHours(Number(sessionEnd.split(':')[0]));
+    sessionDateEnd.setMinutes(Number(sessionEnd.split(':')[1]));
+
+    if (sessionDateStart > new Date()) {
+      this.toastr.error('Session not available yet', "Error");
+    } else if (sessionDateEnd < new Date()) {
+      console.log(sessionDateEnd);
+      
+      this.toastr.error('Session already ended', "Error");
     } else {
       this._teacherService.createMeeting(this.id).subscribe(
         {
