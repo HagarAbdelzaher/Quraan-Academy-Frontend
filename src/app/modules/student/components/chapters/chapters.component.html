@@ -1,27 +1,37 @@
 <ng-container *ngIf="isLoading">
   <div class="d-flex justify-content-center align-items-center vh-100">
-      <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
-          <span class="visually-hidden">Loading...</span>
-      </div>
+    <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
 </ng-container>
-<div class="d-flex justify-content-between page">
-<div>
-  <button class="hamburger-menu" (click)="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </button>
-  <nav class="chapter-sidebar pt-lg-5">
-    <ul class="chapter-sidebar-list">
-      <li  *ngFor="let chapter of chapters" class="chapter-sidebar-item" [class.completed]="progress.includes(chapter._id)"
-        [class.active]="selectedChapter?._id === chapter._id" (click)="selectChapter(chapter)">
-        <a>
-          <i class="fa-regular fa-circle-play" *ngIf="!progress.includes(chapter._id)"></i>
-          <i class="fa-regular fa-circle-check finished" *ngIf="progress.includes(chapter._id)"></i>
-          <span [class.li-text]="progress.includes(chapter._id)">{{chapter.title}} </span></a>
-      </li>
-    </ul>
-  </nav>
-</div>
+
+<ng-container *ngIf="chapters.length <= 0">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div role="status">
+      <h4>No chapters in recorded course yet, It will be added soon!</h4>
+    </div>
+  </div>
+</ng-container>
+
+<div class="d-flex justify-content-between page" *ngIf="chapters.length > 0">
+  <div>
+    <button class="hamburger-menu" (click)="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="chapter-sidebar pt-lg-5">
+      <ul class="chapter-sidebar-list">
+        <li *ngFor="let chapter of chapters" class="chapter-sidebar-item"
+          [class.completed]="progress.includes(chapter._id)" [class.active]="selectedChapter?._id === chapter._id"
+          (click)="selectChapter(chapter)">
+          <a>
+            <i class="fa-regular fa-circle-play" *ngIf="!progress.includes(chapter._id)"></i>
+            <i class="fa-regular fa-circle-check finished" *ngIf="progress.includes(chapter._id)"></i>
+            <span [class.li-text]="progress.includes(chapter._id)">{{chapter.title}} </span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <div class="table-area container-fluid">
     <app-chapter [selectedChapter]="selectedChapter" [recordedCourseId]="recordedCourseId" [chapters]="chapters"
       [progress]="progress" (selectedChapterChange)="onSelectedChapterChange($event)"

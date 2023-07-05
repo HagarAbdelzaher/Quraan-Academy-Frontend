@@ -4,24 +4,32 @@
       <h1 class="display-4">My recorded courses</h1>
     </div>
     <div class="d-flex justify-content-between flex-column" style="width: 15%">
-        <label for="" style="font-size: 14px;">Category</label>
-        <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="selectedCategory"
-          (change)="onSelectCategory($event)">
-          <option value="">All</option>
-          <option value="finished">Finished</option>
-          <option value="inProgress">In progress</option>
-        </select>
+      <label for="" style="font-size: 14px;">Category</label>
+      <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="selectedCategory"
+        (change)="onSelectCategory($event)">
+        <option value="">All</option>
+        <option value="finished">Finished</option>
+        <option value="inProgress">In progress</option>
+      </select>
     </div>
 
     <ng-container *ngIf="isLoading">
       <div class="d-flex justify-content-center align-items-center vh-100">
-          <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
-              <span class="visually-hidden">Loading...</span>
-          </div>
+        <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
-  </ng-container>
+    </ng-container>
 
-    <ng-container>
+    <ng-container *ngIf="recordedCourses.length <= 0">
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <div>
+          <h4>You don't have recorded courses yet <a class="link" routerLink="/recordedCourses">Go to enroll now!</a></h4>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="recordedCourses.length > 0">
       <div class="row">
         <div *ngFor="let course of filteredCourses" class="col-md-6 py-4">
           <div class="per-course">
